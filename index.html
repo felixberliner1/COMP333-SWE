@@ -8,9 +8,74 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <p>
-        Test text for the homepage of the website
-    </p>
+
+    <!--
+        First on our web page should be a list of features that the app provides.
+        These are listed in a flexbox, which should have
+        a header hook, image, and description all behind a colored background.
+        There should be a flexbox for each feature, which right now is 4.
+    -->
+
+    <!--
+      This feature is about a theoretical deep learning model that suggests songs
+    -->
+    <div class="feature">
+        <header class="featureHook">AI-Powered Similar Song Finder</header>
+        <img class="featureImg"
+        src="network.png"
+        alt="A png of a computer network."
+        />
+        <article class="featureMain">
+            Our deep learning model analyzes melody, tempo, instruments, and mood to suggest songs that match your vibe.
+        </article>
+    </div>
+
+    <!--
+      This feature is about a customizable algorithm
+    -->
+    <br>
+    <div class="feature">
+      <header class="featureHook">Customize Your Discovery</header>
+      <img class="featureImg"
+      src="music.png"
+      alt="A png of music notes."
+      />
+      <article class="featureMain">
+        Choose what you love about a song (the beat? the energy? the lyrics?) and get refined recommendations.
+      </article>
+    </div>
+
+    <!--
+      This feature is about integration with other apps
+      Perhaps put links to the other websites on the words here?
+    -->
+    <br>
+    <div class="feature">
+      <header class="featureHook">Seamless Integration</header>
+      <img class="featureImg"
+      src="headphonesImg.png"
+      alt="A png of headphones."
+      />
+      <article class="featureMain">
+        Connect with Spotify, Apple Music, or YouTube and explore new music instantly.
+      </article>
+    </div>
+
+    <!--
+      This feature is about a varied way of searching for songs
+    -->
+    <br>
+    <div class="feature">
+      <header class="featureHook">Interactive Search</header>
+      <img class="featureImg"
+      src="magnifyingglass.png"
+      alt="A png of a magnifying glass."
+      />
+      <article class="featureMain">
+        Hum, sing, or describe a song, and let AI do the rest.
+      </article>
+    </div>
+
     <iframe src="testimonials.html" name="navframe"></iframe>
   </body>
 </html>
