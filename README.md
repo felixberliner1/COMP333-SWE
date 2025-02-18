@@ -5,7 +5,7 @@
 - Will Drake
 - Marouan El-Asery
 
- This repository contains all the necessary files and code for the implementation of this project.
+ This repository contains all the necessary files and code for the implementation of this project. The work was split equally between 3 team members, each doing 33.33% of the total tasks.
 
 ## Project Overview
 
