@@ -5,7 +5,9 @@
 - Will Drake
 - Marouan El-Asery
 
- This repository contains all the necessary files and code for the implementation of this project. The work was split equally between 3 team members, each doing 33.33% of the total tasks.
+## Purpose 
+
+This code is for Homework 1 in COMP 333. It is the landing page for a website that uses AI to create playlists. This repository contains all the necessary files and code for the implementation of this project. The work was split equally between 3 team members, each doing 33.33% of the total tasks.
 
 ## Project Overview
 
