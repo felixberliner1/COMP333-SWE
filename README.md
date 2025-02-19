@@ -20,17 +20,11 @@ This repository is organized as follows:
   
 - **README.md**: The documentation for the project, describing how to run and use the code.
 
-## How to Run the Code
+## How to Use
 
-To run this code locally in your browser:
+To see this code:
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/your-username/repository-name.git
-   
-or
-
-2. Visit this here (https://felixberliner1.github.io/COMP333-SWE/)
+Visit this site (https://felixberliner1.github.io/COMP333-SWE/)
 
 ## Additional Information
 
