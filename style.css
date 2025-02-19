@@ -35,30 +35,37 @@ p {
 }
 
 .navbar {
-  background-color: chocolate;
+  min-width: 700px;
+  width: 100%;
 }
 
 .navbar ul {
-  list-style: none;
-  width: 500px;
+  position: relative;
+  width: 100%;
+  height: 100px;
   margin: 0 auto;
-  padding: 0;
-  background-color: black;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
 }
 
 .navbar li {
   width: 150 px;
   background-color: #000;
-  border: 1px solid red;
+  border: 5px solid red;
   padding: 10px;
   display: inline-block;
   line-height: 40px;
 }
 
 .navbar a {
-  color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 3px;
+  text-shadow: 4px 3px 3px #1b365d;
 }
 
 table,
