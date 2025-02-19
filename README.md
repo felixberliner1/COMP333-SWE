@@ -31,3 +31,15 @@ To run this code locally in your browser:
 or
 
 2. Visit this here (https://felixberliner1.github.io/COMP333-SWE/)
+
+## Additional Information
+
+- HTML-Pages-Added Branch - Issue #1
+- Add-Links Branch - Issue #5
+- StayInTouch Branch - Issue #13
+- Feature-Roadmap Branch - Issue #12
+- Pricing-Plans Brance - Issue #9
+- Reviews-Testimonials - Issue #7
+
+Assignments Switched: FAQ - Felix Berliner, Stay Connected - Will Drake
+
