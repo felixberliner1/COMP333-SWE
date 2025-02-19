@@ -122,6 +122,242 @@ Custom CSS styling for our flexbox class (for the features at the top of the pag
 body {
     padding: 2em
 }
+/* 
+ * Global styles for the pricing section 
+ * Keeping things clean and easy to modify later 
+ */
+
+/* Import custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=DM+Sans:wght@400;500&display=swap');
+
+/* Define some color variables for easy adjustments */
+:root {
+    --primary-bg: #F5F7FA;  /* Light gray for section background */
+    --card-bg: #FFFFFF;  /* White background for pricing cards */
+    --primary-text: #1E1E2E;  /* Dark text for contrast */
+    --secondary-text: #555;  /* Lighter text for descriptions */
+    --accent-color: #4A90E2;  /* Main brand color (buttons, highlights) */
+    --premium-bg: #1E1E2E;  /* Dark mode card for premium plan */
+    --button-bg: #4A90E2;  /* Default button color */
+    --button-hover: #357ABD;  /* Slightly darker blue on hover */
+}
+
+/* 
+ * Main pricing section styling
+ * Centering everything and keeping spacing balanced 
+ */
+.pricing-section {
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--primary-bg);
+}
+
+.pricing-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-section p {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+}
+
+/* 
+ * Pricing card container - flexible layout so cards align nicely
+ * Will stack in mobile view 
+ */
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* 
+ * Default pricing card styling 
+ */
+.pricing-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease-in-out;
+    width: 320px;
+    text-align: center;
+    position: relative;
+    border-top: 4px solid transparent;
+}
+
+.pricing-card:hover {
+    border-top: 4px solid var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* 
+ * Premium plan gets a dark theme 
+ * This makes it stand out in the middle of the other cards
+ */
+.premium {
+    background: var(--premium-bg);
+    color: white;
+}
+
+/* Ensuring text inside premium card is visible */
+.premium .price,
+.premium .plan-desc,
+.premium .features li {
+    color: white !important; /* Making sure it doesn't blend with background */
+    opacity: 1;
+}
+
+.premium .price span {
+    color: rgba(255, 255, 255, 0.85); /* Slight contrast for readability */
+}
+
+/* 
+ * Titles inside the cards - big and bold
+ */
+.pricing-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+/* 
+ * Price styling - making sure it's clearly visible
+ */
+.pricing-card .price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+.pricing-card .price span {
+    font-size: 1rem;
+    color: var(--secondary-text);
+}
+
+/* 
+ * Descriptions inside the cards - should be easy to read 
+ */
+.pricing-card .plan-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+/* Features list inside each plan */
+.features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.features li {
+    font-size: 1rem;
+    padding: 5px 0;
+    color: var(--primary-text);
+}
+
+/* 
+ * Buttons inside pricing cards 
+ * Simple, rounded, and matching the brand color
+ */
+.btn {
+    display: block;
+    text-decoration: none;
+    background: var(--button-bg);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--button-hover);
+}
+
+/* Outline button for Free Plan */
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--button-bg);
+    color: var(--button-bg);
+}
+
+.btn-outline:hover {
+    background: var(--button-bg);
+    color: white;
+}
+
+/* 
+ * "Most Popular" badge for Premium Plan 
+ * Positioned at the top center 
+ */
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* 
+ * Small text below pricing cards 
+ * This is for the free trial info 
+ */
+.trial-info {
+    font-size: 1rem;
+    color: var(--primary-text);
+    margin-top: 1rem;
+}
+
+/* 
+ * Responsive 
+ */
+@media (max-width: 960px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* 
+ * Roadmap Section Styling
+ * Creates a clean timeline layout 
+ */
+ .roadmap-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--primary-bg);
+}
+
+.roadmap-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-section p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
 
 
 /* 
