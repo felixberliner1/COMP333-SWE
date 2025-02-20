@@ -8,6 +8,32 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!--Navigation Bar-->
+    <div id="navbar" class="navbar">
+      <ul>
+        <li><a href="index.html#featureBoxes">Features</a></li>
+        <li><a href="index.html#testimonialsIFrame">User Reviews</a></li>
+        <li><a href="index.html#pricesTable">Pricing Plans</a></li>
+        <li><a href="index.html#roadmap">Roadmap</a></li>
+        <li><a href="index.html#FAQ">FAQ</a></li>
+        <li><a href="index.html#aboutUs">About Us</a></li>
+      </ul>
+    </div>
+
+    
+    <!-- Introduction Paragraph -->
+     <div>
+      <h2> <i class="fas fa-music" id="introParagraph"></i> NeuroTune Discover Music Like Never Before </h2>
+      <p>Your AI-powered music discovery tool that goes beyond genres.</p>
+      <p>🌟 Find the songs you love--based on how they sound, not just they're 
+        labeled. Our deep-learning algorithm analyzes melody, tempo, instruments, and mood to
+        bring you personalized recommendations tailored to your unique taste.</p>
+      <p>🎧 Start discovering music differently today!</p>
+      <a href = "index.html#pricesTable" class="cta-button">🔹 Get Early Access - It's Free</a>
+      <p>This site was designed and published as part of the COMP
+        333 Software Engineering class at Wesleyan University. This is an exercise.</p>
+
+     </div>
 
     <!--
         First on our web page should be a list of features that the app provides.
@@ -19,6 +45,7 @@
     <!--
       This feature is about a theoretical deep learning model that suggests songs
     -->
+    <h2 id="featureBoxes">Features</h2>
     <div class="feature">
         <header class="featureHook">AI-Powered Similar Song Finder</header>
         <img class="featureImg"
@@ -80,15 +107,112 @@
         Hum, sing, or describe a song, and let AI do the rest.
       </article>
     </div>
-
-    <iframe src="testimonials.html" name="navframe"></iframe>
     
+      <!-- User Reviews & Testimonials Section (Loaded from testimonials.html) -->
+    <section class="reviews-wrapper">
+      <iframe src="testimonials.html" class="reviews-iframe" title="User Reviews" id="testimonialsIFrame"></iframe>
+    </section>
+
+
+      <!-- Pricing Plans Section -->
+    <section class="pricing-section" >
+      <h2 id="pricesTable">Choose Your Plan</h2>
+      <p>Flexible plans for every music explorer. Start for free and upgrade anytime.</p>
+
+      <div class="pricing-container">
+          <!-- Free Plan -->
+          <div class="pricing-card">
+              <h3>Free</h3>
+              <p class="price">$0 <span>/ month</span></p>
+              <p class="plan-desc">Basic AI recommendations</p>
+              <ul class="features">
+                  <li>Standard song matches</li>
+                  <li>Basic search filters</li>
+                  <li>Limited searches per day</li>
+              </ul>
+              <a href="#" class="btn btn-outline">Get Started</a>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="pricing-card premium">
+              <span class="badge">Most Popular</span>
+              <h3>Premium</h3>
+              <p class="price">$4.99 <span>/ month</span></p>
+              <p class="plan-desc">Advanced AI filtering, priority access</p>
+              <ul class="features">
+                  <li>Faster & more accurate results</li>
+                  <li>Custom AI tuning (mood, energy, tempo)</li>
+                  <li>Connect to Spotify, Apple Music, YouTube</li>
+              </ul>
+              <a href="#" class="btn">Upgrade Now</a>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="pricing-card">
+              <h3>Pro</h3>
+              <p class="price">$9.99 <span>/ month</span></p>
+              <p class="plan-desc">Full AI customization, unlimited searches</p>
+              <ul class="features">
+                  <li>AI-powered deep song analysis</li>
+                  <li>Unlimited searches & premium matches</li>
+                  <li>Exclusive early access to new features</li>
+              </ul>
+              <a href="#" class="btn btn-outline">Go Pro</a>
+          </div>
+      </div>
+
+      <p class="trial-info">30-Day Free Trial included for Premium & Pro plans.</p>
+    </section>
+
+        <!-- Feature Roadmap Section -->
+    <section class="roadmap-section">
+      <h2 id="roadmap">Feature Roadmap – What’s Next?</h2>
+      <p>NeuroTune is evolving! Here's what's coming soon:</p>
+
+      <div class="timeline">
+          <div class="timeline-item">
+              <div class="timeline-date">March 2025</div>
+              <div class="timeline-content">
+                  <h3>Beta launch for early access users</h3>
+              </div>
+          </div>
+
+          <div class="timeline-item">
+              <div class="timeline-date">April 2025</div>
+              <div class="timeline-content">
+                  <h3>AI-powered search by humming</h3>
+              </div>
+          </div>
+
+          <div class="timeline-item">
+              <div class="timeline-date">May 2025</div>
+              <div class="timeline-content">
+                  <h3>Spotify and Apple Music integration</h3>
+              </div>
+          </div>
+
+          <div class="timeline-item">
+              <div class="timeline-date">June 2025</div>
+              <div class="timeline-content">
+                  <h3>Personalized AI-curated playlists</h3>
+              </div>
+          </div>
+
+          <div class="timeline-item">
+              <div class="timeline-date">August 2025</div>
+              <div class="timeline-content">
+                  <h3>Full public release</h3>
+              </div>
+          </div>
+      </div>
+    </section>
+
     <!-- After the testimonials section comes a FAQ in a descriptive list.
      Each Q is in strong text w/ it's description containing the answer. 
      The words spotify, apple music, and youtube contain links that connect to those sites.
     -->
     <div>
-      <h2>Frequently Asked Questions</h2>
+      <h2 id="FAQ">Frequently Asked Questions</h2>
       <dl>
         <dt><strong>Q: How does NeuroTune recommend songs?</strong></dt>
         <dd>A: Our AI analyzes melody, tempo, instruments, and mood to find matches beyond just artist and genre.</dd>
