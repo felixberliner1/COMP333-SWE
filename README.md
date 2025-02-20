@@ -43,5 +43,3 @@ Visit this site (https://felixberliner1.github.io/COMP333-SWE/)
 - Feature-Roadmap Branch - Issue #12
 - Pricing-Plans Branch - Issue #9
 - Reviews-Testimonials Branch - Issue #7
-
-Assignments Switched: FAQ - Felix Berliner, Stay Connected - Will Drake
