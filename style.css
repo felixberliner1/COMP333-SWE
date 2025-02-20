@@ -8,8 +8,20 @@ body {
   font-family: "Noto Sans SC", sans-serif;
 }
 
-p {
-  color: blue;
+/*
+Styling for the introduction paragraph text. Should look like a gradient between dark blue and purple
+*/
+#introParaText {
+  background-image: linear-gradient(rgb(2, 40, 163), rgb(123, 43, 131));
+  color: transparent;
+  background-clip: text;
+}
+
+/*
+Styling for the header for the about us section. Should look like dark red text
+*/
+#aboutUs {
+  color:darkred
 }
 
 .navbar {
