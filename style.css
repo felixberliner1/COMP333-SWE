@@ -511,7 +511,7 @@ body {
 }
 
 /* Vertical line connecting timeline items */
-.timeline::before {
+/*.timeline::before {
   content: "";
   position: absolute;
   left: 20px;
@@ -519,7 +519,7 @@ body {
   bottom: 0;
   width: 4px;
   background: var(--accent-color);
-}
+}*/
 
 /* Each Timeline Item */
 .timeline-item {
