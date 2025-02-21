@@ -52,16 +52,14 @@
     <main id="main-content" role="main">
       <!-- Hero Section -->
       <section class="hero-section" aria-labelledby="hero-title">
-        <img 
-          src="assets/images/hero-music-bg.WebP" 
-          srcset="assets/images/hero-music-bg-mobile.WebP 600w, assets/images/hero-music-bg.WebP 1200w"
-          sizes="(max-width: 768px) 600px, 1200px"
-          width="1200" height="600"
-          loading="lazy"
+          <!-- Optimized hero image loading -->
+          <img src="assets/images/hero-music-bg.WebP"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
           alt=""
-          class="hero-bg"
-          aria-hidden="true">
-          
+          class="hero-bg">
+                    
         <div class="hero-overlay">
             <h1 id="hero-title"><span class="sr-only">Welcome to </span>NeuroTune – Discover Music Like Never Before</h1>
             <p>Your AI-powered music discovery tool that goes beyond genres.</p>
@@ -277,53 +275,52 @@
         </div>
       </section>
     </main>
-  
-<!-- Footer -->
-<footer class="footer" role="contentinfo">
-  <h2 id="about">Stay Connected with NeuroTune</h2>
-  <div class="footer-container">
-      <dl class="footer-list">
-          <dt>
-            <i class="fas fa-globe" aria-hidden="true"></i>
-            <a href="#" aria-label="Visit NeuroTune website">NeuroTune.com</a>
-          </dt>
-          <dt>
-            <i class="fab fa-twitter" aria-hidden="true"></i>
-            <a href="#" aria-label="Follow us on Twitter">@NeuroTuneAI</a>
-          </dt>
-          <dt>
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-            <a href="#" aria-label="Follow us on Instagram">@NeuroTuneAI</a>
-          </dt>
-          <dt>
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            <a href="mailto:support@neurotune.com" aria-label="Email us at support@neurotune.com">Contact Us</a>
-          </dt>
-      </dl>
 
-      <div class="footer-social" aria-label="Social media links">
-          <a href="#" target="_blank" rel="noopener" aria-label="Follow us on Twitter (opens in new tab)">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-              <span class="sr-only">Twitter</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Follow us on Instagram (opens in new tab)">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <span class="sr-only">Instagram</span>
-          </a>
-          <a href="mailto:support@neurotune.com" aria-label="Send us an email">
-              <i class="fas fa-envelope" aria-hidden="true"></i>
-              <span class="sr-only">Email</span>
-          </a>
-      </div>
-  </div>
-
-  <div class="footer-bottom">
-      © 2025 NeuroTune. All rights reserved.
-  </div>
-</footer>
-
-<!-- Load JavaScript at the end for best performance -->
-<script defer src="script.min.js"></script>
-</body>
-</html>
-
+    <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+          <h2 id="about">Stay Connected with NeuroTune</h2>
+          <div class="footer-container">
+              <dl class="footer-list">
+                  <dt>
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                    <a href="#" aria-label="Visit NeuroTune website">NeuroTune.com</a>
+                  </dt>
+                  <dt>
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                    <a href="#" aria-label="Follow us on Twitter">@NeuroTuneAI</a>
+                  </dt>
+                  <dt>
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <a href="#" aria-label="Follow us on Instagram">@NeuroTuneAI</a>
+                  </dt>
+                  <dt>
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:support@neurotune.com" aria-label="Email us at support@neurotune.com">Contact Us</a>
+                  </dt>
+              </dl>
+    
+              <div class="footer-social" aria-label="Social media links">
+                  <a href="#" target="_blank" rel="noopener" aria-label="Follow us on Twitter (opens in new tab)">
+                      <i class="fab fa-twitter" aria-hidden="true"></i>
+                      <span class="sr-only">Twitter</span>
+                  </a>
+                  <a href="#" target="_blank" rel="noopener" aria-label="Follow us on Instagram (opens in new tab)">
+                      <i class="fab fa-instagram" aria-hidden="true"></i>
+                      <span class="sr-only">Instagram</span>
+                  </a>
+                  <a href="mailto:support@neurotune.com" aria-label="Send us an email">
+                      <i class="fas fa-envelope" aria-hidden="true"></i>
+                      <span class="sr-only">Email</span>
+                  </a>
+              </div>
+          </div>
+    
+          <div class="footer-bottom">
+              © 2025 NeuroTune. All rights reserved.
+          </div>
+        </footer>
+    
+        <!-- Load JavaScript at the end for best performance -->
+        <script defer src="script.min.js"></script>
+    </body>
+    </html>
