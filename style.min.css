@@ -4,35 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Figtree:wght@400;500&display=swap');
 
-/* Load Poppins font with swap to avoid CLS */
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-}
-
-/* Other CSS styles follow below */
-:root {
-  --primary-bg: #1E1E2E;
-  --primary-text: #F1F1F1;
-  --secondary-text: #D0D0D0;
-  --accent-color: #9A59F7;
-}
-
 /* Unified color theme */
 :root {
-  --primary-bg: #1E1E2E;
-  --card-bg: #2A2A3C;
-  --primary-text: #F1F1F1;
-  --secondary-text: #D0D0D0; 
-  --accent-color: #9A59F7;
-  --button-bg: #6A37E0;
-  --button-hover: #5532C3;
+    --primary-bg: #1E1E2E; /* Dark purple background */
+    --card-bg: #2A2A3C; /* Slightly lighter background for cards */
+    --primary-text: #F1F1F1; /* Light text for contrast */
+    --secondary-text: #B3B3B3; /* Muted text color */
+    --accent-color: #9A59F7; /* Vibrant purple for highlights */
+    --button-bg: #6A37E0; /* Purple button background */
+    --button-hover: #5532C3; /* Darker hover effect */
 }
-
-
 
 /* Apply fonts & smooth styling globally */
 body {
@@ -52,81 +33,92 @@ body {
 }
 
 /* --------------------------------------
- NAVIGATION BAR
+   NAVIGATION BAR 
 -------------------------------------- */
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: var(--card-bg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  }
-  /* Logo text */
-  .logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  }
-  /* Navigation links */
-  .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  }
-  /* Individual nav items */
-  .nav-links li {
-  display: inline-block;
-  }
-  /* Nav link styling */
-  .nav-links a {
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--primary-text);
-  padding: 10px 15px;
-  transition: 0.3s ease-in-out;
-  }
-  /* Hover effect */
-  .nav-links a:hover {
-  background: var(--accent-color);
-  color: white;
-  border-radius: 6px;
-  }
-  /* Mobile Navigation */
-  .menu-toggle {
-  font-size: 1.8rem;
-  color: var(--primary-text);
-  cursor: pointer;
-  display: none;
-  }
-  /* Mobile Responsive Navigation */
-  @media (max-width: 768px) {
-  .nav-links {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background: var(--card-bg);
-   }
-  .nav-links li {
-  text-align: center;
-  width: 100%;
-  padding: 10px 0;
-   }
-  .menu-toggle {
-  display: block;
-   }
-  .nav-links.active {
-  display: flex;
-   }
-  }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--card-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* Logo text */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Navigation links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Individual nav items */
+.nav-links li {
+    display: inline-block;
+}
+
+/* Nav link styling */
+.nav-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-text);
+    padding: 10px 15px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.nav-links a:hover {
+    background: var(--accent-color);
+    color: white;
+    border-radius: 6px;
+}
+
+/* Mobile Navigation */
+.menu-toggle {
+    font-size: 1.8rem;
+    color: var(--primary-text);
+    cursor: pointer;
+    display: none;
+}
+
+/* Mobile Responsive Navigation */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+    }
+
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
 
 /* --------------------------------------
    HERO SECTION 
@@ -135,15 +127,15 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 85vh; /* Explicit height */
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 2rem;
   overflow: hidden;
+  margin-bottom: 3rem; 
 }
-
 
 /* Shadow at the Bottom to Blend */
 .hero-section::after {
@@ -156,7 +148,15 @@ body {
   z-index: -1;
 }
 
-
+/* Background Image */
+.hero-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(50%) contrast(1.1);
+}
 
 /* Gradient Overlay */
 .hero-overlay {
@@ -274,11 +274,10 @@ body {
 }
 /* Add aspect-ratio fallback for better image rendering */
 .featureImg {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
 }
-
 
 /* Feature Title */
 .featureHook {
@@ -551,7 +550,7 @@ body {
 
 
 /* --------------------------------------
-   REVIEWS SECTION 
+   🌟 REVIEWS SECTION (ENHANCED)
 -------------------------------------- */
 
 .reviews-section {
@@ -742,7 +741,7 @@ body {
   }
 }
 /* --------------------------------------
-  FAQ SECTION
+   ❓ FAQ SECTION
 -------------------------------------- */
 
 .faq-section {
@@ -894,11 +893,6 @@ body {
 }
 
 /* Footer Links */
-.footer-list dd {
-  font-size: 0.9rem;
-  color: var(--secondary-text);
-  margin-bottom: 0;
-}
 
 .footer-list a {
   color: var(--accent-color);
@@ -955,27 +949,4 @@ body {
   .footer-list dt {
       font-size: 0.95rem;
   }
-
-  .footer-list dd {
-      font-size: 0.85rem;
-  }
-}
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 10px;
-  background: #ffffff;
-  color: #000;
-  padding: 8px 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  text-decoration: none;
-  z-index: 1000;
-  transition: top 0.3s;
-}
-
-.skip-link:focus {
-  top: 10px;
-  outline: 2px solid #000;
 }
