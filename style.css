@@ -1,5 +1,5 @@
 /*
-The following was taken from the example code provided by Professor Zimmeck
+The font choice was from the sample style sheet from Prof. Zimmeck
 */
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap");
@@ -8,30 +8,20 @@ body {
   font-family: "Noto Sans SC", sans-serif;
 }
 
-p {
-  color: blue;
+/*
+Styling for the introduction paragraph text. Should look like a gradient between dark blue and purple
+*/
+#introParaText {
+  background-image: linear-gradient(rgb(2, 40, 163), rgb(123, 43, 131));
+  color: transparent;
+  background-clip: text;
 }
 
-#white-div {
-  color: white;
-}
-
-.padding-color-class {
-  background-color: #000000;
-  color: rgb(100, 168, 200);
-}
-
-.background-image-class {
-  background-image: url(https://picsum.photos/seed/picsum/400/200);
-  background-repeat: no-repeat;
-  color: rgb(5, 110, 10);
-}
-
-.css-box-model-class {
-  border-width: 2px;
-  border-style: solid;
-  margin: 10px 30px 15px 25px;
-  padding: 50px;
+/*
+Styling for the header for the about us section. Should look like dark red text
+*/
+#aboutUs {
+  color:darkred
 }
 
 .navbar {
@@ -52,8 +42,8 @@ p {
 
 .navbar li {
   width: 150 px;
-  background-color: #000;
-  border: 5px solid red;
+  background-color: #eee764;
+  border: 5px solid rgb(0, 0, 0);
   padding: 10px;
   display: inline-block;
   line-height: 40px;
@@ -63,9 +53,9 @@ p {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 20px;
-  color: #fff;
+  color: #000000;
   letter-spacing: 3px;
-  text-shadow: 4px 3px 3px #1b365d;
+  text-shadow: 4px 3px 3px #404d5f;
 }
 
 table,
@@ -109,8 +99,8 @@ Custom CSS styling for our flexbox class (for the features at the top of the pag
 
 .featureImg {
     background-color: #56f0fe;
-    width: 300px;
-    height: auto;
+    width: auto;
+    height: 300px;
 }
 
 .featureMain {
@@ -521,7 +511,7 @@ body {
 }
 
 /* Vertical line connecting timeline items */
-.timeline::before {
+/*.timeline::before {
   content: "";
   position: absolute;
   left: 20px;
@@ -529,7 +519,7 @@ body {
   bottom: 0;
   width: 4px;
   background: var(--accent-color);
-}
+}*/
 
 /* Each Timeline Item */
 .timeline-item {
