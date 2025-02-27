@@ -1,0 +1,981 @@
+/* --------------------------------------
+   GLOBAL STYLES & THEME VARIABLES
+-------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Figtree:wght@400;500&display=swap');
+
+/* Load Poppins font with swap to avoid CLS */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+}
+
+/* Other CSS styles follow below */
+:root {
+  --primary-bg: #1E1E2E;
+  --primary-text: #F1F1F1;
+  --secondary-text: #D0D0D0;
+  --accent-color: #9A59F7;
+}
+
+/* Unified color theme */
+:root {
+  --primary-bg: #1E1E2E;
+  --card-bg: #2A2A3C;
+  --primary-text: #F1F1F1;
+  --secondary-text: #D0D0D0; 
+  --accent-color: #9A59F7;
+  --button-bg: #6A37E0;
+  --button-hover: #5532C3;
+}
+
+
+
+/* Apply fonts & smooth styling globally */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove default padding/margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------------------------
+ NAVIGATION BAR
+-------------------------------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  }
+  /* Logo text */
+  .logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  }
+  /* Navigation links */
+  .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  }
+  /* Individual nav items */
+  .nav-links li {
+  display: inline-block;
+  }
+  /* Nav link styling */
+  .nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-text);
+  padding: 10px 15px;
+  transition: 0.3s ease-in-out;
+  }
+  /* Hover effect */
+  .nav-links a:hover {
+  background: var(--accent-color);
+  color: white;
+  border-radius: 6px;
+  }
+  /* Mobile Navigation */
+  .menu-toggle {
+  font-size: 1.8rem;
+  color: var(--primary-text);
+  cursor: pointer;
+  display: none;
+  }
+  /* Mobile Responsive Navigation */
+  @media (max-width: 768px) {
+  .nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+   }
+  .nav-links li {
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+   }
+  .menu-toggle {
+  display: block;
+   }
+  .nav-links.active {
+  display: flex;
+   }
+  }
+
+/* --------------------------------------
+   HERO SECTION 
+-------------------------------------- */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 85vh; /* Explicit height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+
+/* Shadow at the Bottom to Blend */
+.hero-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* Adjust the height for a stronger or lighter effect */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, var(--primary-bg) 100%);
+  z-index: -1;
+}
+
+
+
+/* Gradient Overlay */
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 750px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Heading */
+.hero-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-text);
+  letter-spacing: 1px;
+}
+
+/* Hero Paragraph */
+.hero-section p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--secondary-text);
+  margin-bottom: 1rem;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  background: var(--button-bg);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+  background: var(--button-hover);
+  transform: translateY(-3px);
+}
+
+/* Subtext */
+.sub-text {
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+  margin-top: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+      height: auto;
+      padding: 3rem 1rem;
+  }
+
+  .hero-overlay {
+      padding: 2rem;
+      width: 95%;
+  }
+
+  .hero-section h2 {
+      font-size: 2rem;
+  }
+
+  .hero-section p {
+      font-size: 1rem;
+  }
+
+  .cta-button {
+      font-size: 1.1rem;
+      padding: 12px 24px;
+  }
+}
+
+
+/* --------------------------------------
+   FEATURES SECTION
+-------------------------------------- */
+
+#featureBoxes {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Feature Layout */
+.feature {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+/* Add aspect-ratio fallback for better image rendering */
+.featureImg {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+/* Feature Title */
+.featureHook {
+    font-size: 1.4rem;
+    font-weight: 600;
+    flex: 1;
+    color: var(--accent-color);
+}
+
+/* Feature Image */
+.featureImg {
+    width: 160px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effect for images */
+.feature:hover .featureImg {
+    transform: scale(1.05);
+}
+
+/* Feature Description */
+.featureMain {
+    font-size: 1rem;
+    flex: 2;
+    text-align: left;
+    line-height: 1.5;
+}
+
+/* Responsive Features */
+@media (max-width: 768px) {
+    .feature {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .featureHook {
+        text-align: center;
+    }
+
+    .featureImg {
+        width: 180px;
+    }
+
+    .featureMain {
+        text-align: center;
+    }
+}
+
+/* 
+ * Main pricing section styling
+ * Centering everything and keeping spacing balanced 
+ */
+.pricing-section {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--primary-bg);
+}
+
+.pricing-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-section p {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+}
+
+/* 
+ * Pricing card container - flexible layout so cards align nicely
+ * Will stack in mobile view 
+ */
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* 
+ * Default pricing card styling 
+
+ */
+.pricing-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease-in-out;
+    width: 320px;
+    text-align: center;
+    position: relative;
+    border-top: 4px solid transparent;
+}
+
+.pricing-card:hover {
+    border-top: 4px solid var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* 
+ * Premium plan gets a dark theme 
+ * This makes it stand out in the middle of the other cards
+ */
+.premium {
+    background: var(--premium-bg);
+    color: white;
+}
+
+/* Ensuring text inside premium card is visible */
+.premium .price,
+.premium .plan-desc,
+.premium .features li {
+    color: white !important; /* Making sure it doesn't blend with background */
+    opacity: 1;
+}
+
+.premium .price span {
+    color: rgba(255, 255, 255, 0.85); /* Slight contrast for readability */
+}
+
+/* 
+ * Titles inside the cards - big and bold
+ */
+.pricing-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+/* 
+ * Price styling - making sure it's clearly visible
+ */
+.pricing-card .price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+.pricing-card .price span {
+    font-size: 1rem;
+    color: var(--secondary-text);
+}
+
+/* 
+ * Descriptions inside the cards - should be easy to read 
+ */
+.pricing-card .plan-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+/* Features list inside each plan */
+.features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.features li {
+    font-size: 1rem;
+    padding: 5px 0;
+    color: var(--primary-text);
+}
+
+/* 
+ * Buttons inside pricing cards 
+ * Simple, rounded, and matching the brand color
+ */
+.btn {
+    display: block;
+    text-decoration: none;
+    background: var(--button-bg);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--button-hover);
+}
+
+/* Outline button for Free Plan */
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--button-bg);
+    color: var(--button-bg);
+}
+
+.btn-outline:hover {
+    background: var(--button-bg);
+    color: white;
+}
+
+/* 
+ * "Most Popular" badge for Premium Plan 
+ * Positioned at the top center 
+ */
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* 
+ * Small text below pricing cards 
+ * This is for the free trial info 
+ */
+.trial-info {
+    font-size: 1rem;
+    color: var(--primary-text);
+    margin-top: 1rem;
+}
+
+/* 
+ * Responsive 
+ */
+@media (max-width: 960px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* 
+ * Roadmap Section Styling
+ * Creates a clean timeline layout 
+ */
+ .roadmap-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--primary-bg);
+}
+
+.roadmap-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-section p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+
+/* --------------------------------------
+   REVIEWS SECTION 
+-------------------------------------- */
+
+.reviews-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--primary-bg);
+}
+
+/* Reviews Heading */
+.reviews-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+/* Reviews Subtext */
+.reviews-section p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+/* Iframe Wrapper for Centering */
+.reviews-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Iframe - More User-Friendly & Responsive */
+.reviews-iframe {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments for Mobile */
+@media (max-width: 768px) {
+  .reviews-section {
+      padding: 3rem 1.5rem;
+  }
+
+  .reviews-wrapper {
+      padding: 1.5rem;
+  }
+
+  .reviews-iframe {
+      height: 600px; /* Increased height for better mobile experience */
+      width: 95%; /* Ensures it doesn't shrink too much */
+  }
+}
+
+
+/* 
+ * Roadmap Section Styling
+ * Creates a clean timeline layout 
+ */
+ .roadmap-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--primary-bg);
+}
+
+.roadmap-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-section p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+/* 
+* Timeline Container
+* Each feature update appears in a structured layout
+*/
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20px;
+}
+
+/* Vertical line connecting timeline items */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-color);
+}
+
+/* Each Timeline Item */
+.timeline-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Date Styling */
+.timeline-date {
+  width: 120px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* Feature Content */
+.timeline-content {
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+}
+
+.timeline-content h3 {
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+/* Hover effect for timeline content */
+.timeline-item:hover .timeline-content {
+  background: var(--accent-color); /* Turns blue */
+  color: white; /* Ensures text remains readable */
+  transition: 0.3s ease-in-out;
+}
+
+/* Ensures text inside timeline items remains visible on hover */
+.timeline-item:hover .timeline-content h3 {
+  color: white;
+}
+/* 
+* Responsive 
+*/
+@media (max-width: 768px) {
+  .timeline {
+      padding-left: 0;
+  }
+
+  .timeline::before {
+      left: 50%;
+      width: 3px;
+  }
+
+  .timeline-item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .timeline-date {
+      width: auto;
+      text-align: center;
+      margin-bottom: 10px;
+      padding-right: 0;
+  }
+
+  .timeline-content {
+      width: 90%;
+      text-align: center;
+  }
+}
+/* --------------------------------------
+  FAQ SECTION
+-------------------------------------- */
+
+.faq-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* FAQ Container */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Question */
+.faq-question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    cursor: pointer;
+    position: relative;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Add arrow indicator */
+.faq-question::after {
+    content: "▼";
+    font-size: 1rem;
+    position: absolute;
+    right: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Open state */
+.faq-question.open::after {
+    transform: rotate(180deg);
+}
+
+/* Answer */
+.faq-answer {
+    font-size: 1rem;
+    color: var(--secondary-text);
+    padding: 0 15px;
+    line-height: 1.6;
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Show answer when question is clicked */
+.faq-question.open + .faq-answer {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Link styling */
+.faq-answer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.faq-answer a:hover {
+    color: var(--button-hover);
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.95rem;
+    }
+}
+/* --------------------------------------
+   COMPACT FOOTER - Stay Connected
+-------------------------------------- */
+
+.footer {
+  background: var(--card-bg);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-top: 3px solid var(--accent-color);
+}
+
+.footer h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+/* Footer Flex Layout */
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Footer Contact List - Compact Style */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.footer-list dt {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-list i {
+  color: var(--accent-color);
+  font-size: 1rem;
+}
+
+/* Footer Links */
+.footer-list dd {
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+  margin-bottom: 0;
+}
+
+.footer-list a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-list a:hover {
+  color: var(--button-hover);
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  color: var(--secondary-text);
+  font-size: 1.2rem;
+  transition: color 0.3s ease-in-out, transform 0.2s;
+}
+
+.footer-social a:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+/* Copyright */
+.footer-bottom {
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+      padding: 1rem;
+  }
+
+  .footer h2 {
+      font-size: 1.2rem;
+  }
+
+  .footer-list {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .footer-list dt {
+      font-size: 0.95rem;
+  }
+
+  .footer-list dd {
+      font-size: 0.85rem;
+  }
+}
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #ffffff;
+  color: #000;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 10px;
+  outline: 2px solid #000;
+}
