@@ -9,8 +9,8 @@
         $rating = $_POST['rating'];
         $user = $_SESSION['username'];
         $sql = " INSERT INTO ratings(username, song, artist, rating) VALUES ( '$user', '$song', '$artist', '$rating')";
-        $query = mysqli_query($conn, $sql);
-        echo "submitted";
+        $conn->query($sql);
+        header("location:welcome.php");
     }
 ?>
 <html lang="en">
