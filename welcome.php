@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start() ?>
 <html lang="en">
 <head>
     <meta charset = "UTF-8">
@@ -30,25 +31,48 @@
             if(!$result){
                 echo "ERROR";
             }
-            while($row=$result->fetch_assoc()){
-                echo 
-                "<tr>
-                    <!-- First couple column entries are just data from table -->
-                    <td>$row[id]</td>
-                    <td>$row[username]</td>
-                    <td>$row[song]</td>
-                    <td>$row[artist]</td>
-                    <td>$row[rating]</td>
+            else{
+                echo '<a href = "create.php">CREATE</a>';
+                while($row=$result->fetch_assoc()){
+                    if ($_SESSION['username'] == $row['username'])
+                    {
+                        $out_value = "<tr>
+                        <!-- First couple column entries are just data from table -->
+                        <td>$row[id]</td>
+                        <td>$row[username]</td>
+                        <td>$row[song]</td>
+                        <td>$row[artist]</td>
+                        <td>$row[rating]</td>
 
-                    <!-- Next row are the action buttons-->
-                    <td>
-                        <!-- Add classes for CSS and links when functionality is added -->
-                        <a>VIEW</a>
-                        <a>UPDATE</a>
-                        <a>DELETE</a>
-                    </td>
+                        <!-- Next row are the action buttons-->
+                        <td>
+                            <!-- Add classes for CSS and links when functionality is added -->
+                            <a href = 'read.php'>READ</a>
+                            <a href = 'update.php'>UPDATE</a>
+                            <a href = 'delete.php'>DELETE</a>
+                        </td>
 
-                </tr>";
+                        </tr>";
+                    }
+                    else {
+                        $out_value = "<tr>
+                        <!-- First couple column entries are just data from table -->
+                        <td>$row[id]</td>
+                        <td>$row[username]</td>
+                        <td>$row[song]</td>
+                        <td>$row[artist]</td>
+                        <td>$row[rating]</td>
+
+                        <!-- Next row are the action buttons-->
+                        <td>
+                            <!-- Add classes for CSS and links when functionality is added -->
+                            <a href = 'read.php'>READ</a>
+                        </td>
+
+                        </tr>";
+                    }
+                    echo $out_value;
+                }
             }
         ?>
     </table> 
