@@ -24,7 +24,10 @@ if(isset($_POST['register'])) {
     $result_check = mysqli_stmt_get_result($stmt_check);
 
     if(mysqli_num_rows($result_check) > 0) {
-        echo '<script>alert("Username already taken. Please choose another.");</script>';
+        echo '<script>
+            alert("Username already taken. Please choose another.");
+            window.location.href = "register.php";
+        </script>';
         exit();
     }
 
@@ -65,7 +68,7 @@ if(isset($_POST['register'])) {
     }
     ?>
 
-    <form action="register.php" method="post">
+    <form action="register.php" method="post" onsubmit="return isvalid()">
         <label>Username:</label>
         <input type="text" name="user" required>
         <br>
