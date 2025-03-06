@@ -81,7 +81,7 @@
                         <!-- Next row are the action buttons-->
                         <td>
                             <!-- Add classes for CSS and links when functionality is added -->
-                            <a href = 'read.php'>READ</a>
+                            <a href = 'read.php?id=$row[id]'>READ</a>
                         </td>
 
                         </tr>";
