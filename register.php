@@ -31,10 +31,13 @@ if(isset($_POST['register'])) {
         exit();
     }
 
-    $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
+    $salt = bin2hex(random_bytes(16));
+    $hashed_password = password_hash($salt . $password, PASSWORD_BCRYPT);
+
+    $sql = "INSERT INTO login (username, password, salt) VALUES (?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     
-    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    mysqli_stmt_bind_param($stmt, "sss", $username, $hashed_password, $salt);
     
     if(mysqli_stmt_execute($stmt)) {
         $_SESSION['username'] = $username;
