@@ -1,7 +1,9 @@
 <?php
+    session_start();
     include("connection.php");
     if(isset($_POST['btn'])) {
         $username = $_POST['user'];
+        $_SESSION['username'] = $username;
         $password = $_POST['pass'];
 
         $sql = "select * from login where username = '$username' and password = '$password'";
