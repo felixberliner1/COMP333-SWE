@@ -6,19 +6,33 @@
         $_SESSION['username'] = $username;
         $password = $_POST['pass'];
 
-        $sql = "select * from login where username = '$username' and password = '$password'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        $count = mysqli_num_rows($result);
-        if($count==1) {
-            header("Location:welcome.php");
-        }
-        else {
+        $sql = "SELECT password, salt FROM login WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $username); 
+        mysqli_stmt_execute($stmt); 
+        mysqli_stmt_store_result($stmt); 
+        mysqli_stmt_bind_result($stmt, $hashed_password, $salt); 
+        
+        if(mysqli_stmt_num_rows($stmt) == 1) {
+            mysqli_stmt_fetch($stmt);
+    
+            if(password_verify($salt . $password, $hashed_password)) {
+                header("Location: welcome.php");
+                exit();
+            } else {
+                echo  '<script>
+                    window.location.href = "index.php"
+                    alert("Login failed. Invalid username or password.")
+                    </script>';
+            }
+        } else {
             echo  '<script>
                 window.location.href = "index.php"
-                alert("Login failed. Invalid username or password")
-                </script>' ;
+                alert("Login failed. Invalid username or password.")
+                </script>';
         }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
     }
-  
 ?>

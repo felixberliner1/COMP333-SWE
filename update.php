@@ -5,17 +5,22 @@
     include("connection.php");
     if(isset($_GET['id'])){
         $origID = $_GET['id'];
-        $origSQL = "select * from ratings where id = $origID";
-        $origResult = mysqli_query($conn, $origSQL);
-        $origRow = mysqli_fetch_assoc($origResult);
+        $stmt = $conn->prepare("SELECT * FROM ratings WHERE id = ?");
+        $stmt->bind_param("i", $origID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $origRow = $result->fetch_assoc();
+        $stmt->close();
     }
     if(isset($_POST['btn'])){
         $song = $_POST['song'];
         $artist = $_POST['artist'];
         $rating = $_POST['rating'];
         $user = $_SESSION['username'];
-        $sql = "update ratings set song='$song', artist='$artist', rating='$rating'";
-        $conn->query($sql);
+        $stmt = $conn->prepare("UPDATE ratings SET song = ?, artist = ?, rating = ? WHERE id = ?");
+        $stmt->bind_param("ssii", $song, $artist, $rating, $origID);
+        $stmt->execute();
+        $stmt->close();
         header("location:welcome.php");
     }
 ?>

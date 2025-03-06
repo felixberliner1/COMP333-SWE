@@ -4,8 +4,10 @@
     include "connection.php";
     if(isset($_GET['id']) && isset($_POST['btn'])){
         $id = $_GET['id'];
-        $sql = "DELETE from ratings where id=$id";
-        $conn->query(query: $sql);
+        $stmt = $conn->prepare("DELETE FROM ratings WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
         header("location:welcome.php");
     }
 ?>

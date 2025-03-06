@@ -8,8 +8,10 @@
         $artist = $_POST['artist'];
         $rating = $_POST['rating'];
         $user = $_SESSION['username'];
-        $sql = " INSERT INTO ratings(username, song, artist, rating) VALUES ( '$user', '$song', '$artist', '$rating')";
-        $conn->query($sql);
+        $stmt = $conn->prepare("INSERT INTO ratings(username, song, artist, rating) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssi", $user, $song, $artist, $rating);
+        $stmt->execute();
+        $stmt->close();
         header("location:welcome.php");
     }
 ?>

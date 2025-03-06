@@ -12,6 +12,14 @@ if(isset($_POST['register'])) {
     $password = $_POST['pass'];
     $confirm_password = $_POST['confirm_pass'];
 
+    if(strlen($password) < 10) { 
+        echo '<script>
+            alert("Password must be at least 10 characters long."); 
+            window.location.href = "register.php";
+        </script>';
+        exit();
+    }
+
     if($password !== $confirm_password) {
         header("Location: register.php?error=password_mismatch");
         exit();
@@ -31,10 +39,13 @@ if(isset($_POST['register'])) {
         exit();
     }
 
-    $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
+    $salt = bin2hex(random_bytes(16));
+    $hashed_password = password_hash($salt . $password, PASSWORD_BCRYPT);
+
+    $sql = "INSERT INTO login (username, password, salt) VALUES (?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     
-    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    mysqli_stmt_bind_param($stmt, "sss", $username, $hashed_password, $salt);
     
     if(mysqli_stmt_execute($stmt)) {
         $_SESSION['username'] = $username;
