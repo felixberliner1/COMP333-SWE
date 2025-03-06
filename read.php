@@ -18,6 +18,20 @@
         <title>View Data</title>
     </head>
 <body>
+    <?php
+    
+    if(isset($_POST['logout'])) {
+        $_SESSION = array();
+        session_destroy();
+        header("location:index.php");
+    }
+    ?>
+    You are currently logged in as: <?php echo $_SESSION['username']?>
+    <form method="post">
+        <input type="submit" name="logout"
+            value="log out?"/>
+    </form>
+
     <h1>ID</h1>
     <?php echo $row['id']?>
     <h1>Username</h1>

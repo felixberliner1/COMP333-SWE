@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    session_start();
     include "connection.php";
     if(isset($_GET['id']) && isset($_POST['btn'])){
         $id = $_GET['id'];
@@ -16,6 +17,20 @@
         <title>Delete Entry?</title>
     </head>
     <body>
+    <?php
+    
+    if(isset($_POST['logout'])) {
+        $_SESSION = array();
+        session_destroy();
+        header("location:index.php");
+    }
+    ?>
+    You are currently logged in as: <?php echo $_SESSION['username']?>
+    <form method="post">
+        <input type="submit" name="logout"
+            value="log out?"/>
+    </form>
+
         Please confirm if you really want to delete this entry.
         <div id="form">
         <form name="form" method="POST">

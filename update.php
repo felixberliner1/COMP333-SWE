@@ -27,6 +27,20 @@
         <title>Update Data</title>
     </head>
 <body>
+    <?php
+    
+    if(isset($_POST['logout'])) {
+        $_SESSION = array();
+        session_destroy();
+        header("location:index.php");
+    }
+    ?>
+    You are currently logged in as: <?php echo $_SESSION['username']?>
+    <form method="post">
+        <input type="submit" name="logout"
+            value="log out?"/>
+    </form>
+
     <div id="form">
         <h1>Enter data here:</h1>
         <form name="form" Onsubmit="return isvalid()" method="POST">

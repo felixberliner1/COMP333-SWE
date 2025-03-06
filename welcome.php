@@ -8,6 +8,21 @@
     <title>Document</title>
 </head>
 <body>
+
+    <?php
+    
+    if(isset($_POST['logout'])) {
+        $_SESSION = array();
+        session_destroy();
+        header("location:index.php");
+    }
+    ?>
+    You are currently logged in as: <?php echo $_SESSION['username']?>
+    <form method="post">
+        <input type="submit" name="logout"
+            value="log out?"/>
+    </form>
+
     <h1>Song Ratings</h1>
 <!-- Later: add a log out button and test saying who is logged in-->
  
