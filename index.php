@@ -21,6 +21,7 @@
             <input type="password" id="pass" name="pass">
         </br></br>
             <input type="submit" id="btn" value="Login" name="btn">
+        <p>New? <a href="register.php">Register Here</a></p>
 
     </div>
     <script>
