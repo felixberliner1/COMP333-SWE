@@ -5,9 +5,12 @@
     include("connection.php");
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $sql = "select * from ratings where id = $id";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
+        $stmt = $conn->prepare("SELECT * FROM ratings WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
     }
 ?>
 <html lang="en">

@@ -6,17 +6,16 @@
         $_SESSION['username'] = $username;
         $password = $_POST['pass'];
 
-        $sql = "SELECT password, salt FROM login WHERE username = ?"; // Added
-        $stmt = mysqli_prepare($conn, $sql); // Added
-        mysqli_stmt_bind_param($stmt, "s", $username); // Added
-        mysqli_stmt_execute($stmt); // Added
-        mysqli_stmt_store_result($stmt); // Added
-        mysqli_stmt_bind_result($stmt, $hashed_password, $salt); // Added
+        $sql = "SELECT password, salt FROM login WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $username); 
+        mysqli_stmt_execute($stmt); 
+        mysqli_stmt_store_result($stmt); 
+        mysqli_stmt_bind_result($stmt, $hashed_password, $salt); 
         
         if(mysqli_stmt_num_rows($stmt) == 1) {
             mysqli_stmt_fetch($stmt);
     
-            // Modified: Hash the entered password with the stored salt and verify
             if(password_verify($salt . $password, $hashed_password)) {
                 header("Location: welcome.php");
                 exit();
@@ -36,7 +35,4 @@
         mysqli_close($conn);
     
     }
-?>
-
-  
 ?>

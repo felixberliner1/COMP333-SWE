@@ -12,6 +12,14 @@ if(isset($_POST['register'])) {
     $password = $_POST['pass'];
     $confirm_password = $_POST['confirm_pass'];
 
+    if(strlen($password) < 10) { 
+        echo '<script>
+            alert("Password must be at least 10 characters long."); 
+            window.location.href = "register.php";
+        </script>';
+        exit();
+    }
+
     if($password !== $confirm_password) {
         header("Location: register.php?error=password_mismatch");
         exit();
