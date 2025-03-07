@@ -3,6 +3,7 @@
 <?php
     session_start();
     include("connection.php");
+    //Get the data for the original row to display in the form
     if(isset($_GET['id'])){
         $origID = $_GET['id'];
         $stmt = $conn->prepare("SELECT * FROM ratings WHERE id = ?");
@@ -12,6 +13,7 @@
         $origRow = $result->fetch_assoc();
         $stmt->close();
     }
+    //Updates the row in the ratings table when the submit button is pressed
     if(isset($_POST['btn'])){
         $song = $_POST['song'];
         $artist = $_POST['artist'];
@@ -33,7 +35,7 @@
     </head>
 <body>
     <?php
-    
+    //Ends the session and send user back to index.php when logged out
     if(isset($_POST['logout'])) {
         $_SESSION = array();
         session_destroy();
@@ -45,8 +47,8 @@
         <input type="submit" name="logout"
             value="log out?"/>
     </form>
-
     <div id="form">
+<!-- Form includes data fields for the song, artist, and rating. The forms should start containing the values for the original data.-->
         <h1>Enter data here:</h1>
         <form name="form" Onsubmit="return isvalid()" method="POST">
             
@@ -64,6 +66,7 @@
     </div>
     <a href="welcome.php">Go Back</a>
     <script>
+        //Checks to make sure that the song and artist fields can't be empty. The rating should be taken care of in teh form field already.
         function isvalid(){
             var song = document.form.song.value;
             var artist = document.form.artist.value;
