@@ -66,8 +66,13 @@ The following branches address various issues throughout the project:
 - **Pricing-Plans** – Issue #9
 - **Reviews-Testimonials** – Issue #7
 - **Final-UI-Enhancements** – Issues **#34, #35, & #14** (latest updates)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+HOMEWORK 2:
 
 ## XAMPP Environment Screenshots
 
 Will:
 <img width="1237" alt="PNG image" src="https://github.com/user-attachments/assets/3d31875d-06a7-4d18-a5d6-a60299d0e35f" />
+Felix:
+![image](https://github.com/user-attachments/assets/7b59a3f7-851e-4fa4-b562-cf743a870229)
+
