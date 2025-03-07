@@ -51,13 +51,13 @@
         <form name="form" Onsubmit="return isvalid()" method="POST">
             
             <label>Song: </label>
-            <input type="text" id="song" name="song" value=<?php echo "$origRow[song]"; ?>>
+            <input type="text" id="song" name="song" value="<?php echo "$origRow[song]"; ?>">
         </br></br>
             <label>Artist: </label>
-            <input type="text" id="artist" name="artist" value=<?php echo "$origRow[artist]"; ?>>
+            <input type="text" id="artist" name="artist" value="<?php echo "$origRow[artist]"; ?>">
         </br></br>
             <label>Rating: </label>
-            <input type="number" step="1" onchange="this.value = Math.max(0, Math.min(9, parseInt(this.value)));" name ="rating" value=<?php echo "$origRow[rating]"; ?>>
+            <input type="number" step="1" onchange="this.value = Math.max(0, Math.min(9, parseInt(this.value)));" name ="rating" value="<?php echo "$origRow[rating]"; ?>">
         </br></br>
             <input type="submit" id="btn" value="submit" name="btn">
 
