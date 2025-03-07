@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("connection.php");
 ?>
 <!DOCTYPE html>
@@ -10,6 +11,14 @@
         <title>Login</title>
     </head>
 <body>
+    <?php 
+        if (isset($_SESSION['loginsuccessful'])) {
+            if ($_SESSION['loginsuccessful'] == false) {
+                echo "Username or Password Incorrect. Please Try Again.";
+                $_SESSION['loginsuccessful'] = true;
+            }
+        }
+    ?>
     <div id="form">
         <h1>Login Form</h1>
         <form name="form" action="login.php" Onsubmit="return isvalid()" method="POST">
