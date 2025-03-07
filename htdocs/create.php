@@ -3,6 +3,7 @@
 <?php
     session_start();
     include("connection.php");
+    //When button is pressed, inserts the data from the form to the ratings table.
     if(isset($_POST['btn'])){
         $song = $_POST['song'];
         $artist = $_POST['artist'];
@@ -24,7 +25,7 @@
     </head>
 <body>
     <?php
-    
+    //Logout button
     if(isset($_POST['logout'])) {
         $_SESSION = array();
         session_destroy();
@@ -36,7 +37,7 @@
         <input type="submit" name="logout"
             value="log out?"/>
     </form>
-
+<!-- Form asks for a song, artist, and rating. Song and artist are strings, ratings are numbers 0-9. -->
     <div id="form">
         <h1>Enter data here:</h1>
         <form name="form" Onsubmit="return isvalid()" method="POST">
@@ -55,6 +56,7 @@
     </div>
     <a href="welcome.php">Go Back</a>
     <script>
+        //Checks to make sure song and artist fields are empty, rating is already checked in the form.
         function isvalid(){
             var song = document.form.song.value;
             var artist = document.form.artist.value;
