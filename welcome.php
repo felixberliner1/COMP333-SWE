@@ -28,7 +28,7 @@
  
 <!-- Add entry to CRUD table-->
     <a>Add new entry</a>
-
+    <?php echo '<a href = "create.php">CREATE</a>'; ?>
 <!--CRUD table begins here -->
     <table>
     <tr>
@@ -47,7 +47,6 @@
                 echo "ERROR";
             }
             else{
-                echo '<a href = "create.php">CREATE</a>';
                 while($row=$result->fetch_assoc()){
                     if ($_SESSION['username'] == $row['username'])
                     {
