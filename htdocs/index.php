@@ -12,6 +12,7 @@
     </head>
 <body>
     <?php 
+        //Displays an incorrect login message when user + pass are incorrect (see login.php)
         if (isset($_SESSION['loginsuccessful'])) {
             if ($_SESSION['loginsuccessful'] == false) {
                 echo "Username or Password Incorrect. Please Try Again.";
@@ -22,7 +23,7 @@
     <div id="form">
         <h1>Login Form</h1>
         <form name="form" action="login.php" Onsubmit="return isvalid()" method="POST">
-            
+    <!-- Asks for username and password -->
             <label>Username: </label>
             <input type="text" id="user" name="user">
         </br></br>
@@ -38,6 +39,7 @@
             var user = document.form.user.value;
             var pass = document.form.pass.value;
             if(user.length=="" && pass.length=="") {
+                //Checks to make sure if the username and password aren't empty
                 alert("Username and password field is empty.");
                 return false
             }
