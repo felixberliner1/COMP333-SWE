@@ -5,7 +5,7 @@
     <meta charset = "UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome!</title>
 </head>
 <body>
 
@@ -27,8 +27,9 @@
 <!-- Later: add a log out button and test saying who is logged in-->
  
 <!-- Add entry to CRUD table-->
-    <a>Add new entry</a>
+    <a>Add new entry: </a>
     <?php echo '<a href = "create.php">CREATE</a>'; ?>
+
 <!--CRUD table begins here -->
     <table>
     <tr>
