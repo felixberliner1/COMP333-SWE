@@ -2,6 +2,7 @@
 <?php
     session_start();
     include "connection.php";
+    //If button is pressed, gets the id from welcome and deletes the entry.
     if(isset($_GET['id']) && isset($_POST['btn'])){
         $id = $_GET['id'];
         $stmt = $conn->prepare("DELETE FROM ratings WHERE id = ?");
@@ -20,7 +21,7 @@
     </head>
     <body>
     <?php
-    
+    //Logout button
     if(isset($_POST['logout'])) {
         $_SESSION = array();
         session_destroy();
@@ -32,7 +33,7 @@
         <input type="submit" name="logout"
             value="log out?"/>
     </form>
-
+<!-- Form asks if you want to delete the entry and sends you back if you say no -->
         Please confirm if you really want to delete this entry.
         <div id="form">
         <form name="form" method="POST">
