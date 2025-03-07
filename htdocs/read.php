@@ -3,6 +3,7 @@
 <?php
     session_start();
     include("connection.php");
+    //Gets the id selected out of the table and sets the variables accordingly.
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $stmt = $conn->prepare("SELECT * FROM ratings WHERE id = ?");
@@ -22,7 +23,7 @@
     </head>
 <body>
     <?php
-    
+    //Logout button
     if(isset($_POST['logout'])) {
         $_SESSION = array();
         session_destroy();
@@ -34,7 +35,7 @@
         <input type="submit" name="logout"
             value="log out?"/>
     </form>
-
+<!-- Displays data thats retrieved from the row containing the sent id number-->
     <h1>ID</h1>
     <?php echo $row['id']?>
     <h1>Username</h1>
