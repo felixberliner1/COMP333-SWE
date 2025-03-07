@@ -2,9 +2,11 @@
 session_start();
 include("connection.php");
 
-if(isset($_SESSION['username'])) {
-    header("Location: welcome.php");
-    exit();
+if(isset($_SESSION['loggedin'])) {
+    if($_SESSION['loggedin'] == true) {
+        header("Location: welcome.php");
+        exit();
+    }
 }
 
 if(isset($_POST['register'])) {
@@ -40,12 +42,12 @@ if(isset($_POST['register'])) {
     }
 
     $salt = bin2hex(random_bytes(16));
-    $hashed_password = password_hash($salt . $password, PASSWORD_BCRYPT);
-
-    $sql = "INSERT INTO login (username, password, salt) VALUES (?, ?, ?)";
+    #$hashed_password = password_hash($salt . $password, PASSWORD_BCRYPT);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     
-    mysqli_stmt_bind_param($stmt, "sss", $username, $hashed_password, $salt);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $hashed_password);
     
     if(mysqli_stmt_execute($stmt)) {
         $_SESSION['username'] = $username;
