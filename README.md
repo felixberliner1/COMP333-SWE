@@ -178,7 +178,6 @@ Will:
 ![XAMPP Screenshot](assets/images/XAMPP_Will.png)
 
 Felix:
-(upload yours here)
 ![XAMPP Screenshot](assets/images/XAMPP_Felix.png)
 
 ### InfinityFree Deployment
