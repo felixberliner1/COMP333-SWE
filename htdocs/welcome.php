@@ -10,7 +10,7 @@
 <body>
 
     <?php
-    
+    //Ends the session and send user back to index.php when logged out
     if(isset($_POST['logout'])) {
         $_SESSION = array();
         session_destroy();
@@ -24,7 +24,6 @@
     </form>
 
     <h1>Song Ratings</h1>
-<!-- Later: add a log out button and test saying who is logged in-->
  
 <!-- Add entry to CRUD table-->
     <a>Add new entry: </a>
@@ -49,6 +48,8 @@
             }
             else{
                 while($row=$result->fetch_assoc()){
+                    //This table contains data for the ratings table.
+                    //If the username of the row is currently logged in, adds the update and delete buttons to the table. Otherwise, should just show the read option.
                     if ($_SESSION['username'] == $row['username'])
                     {
                         $out_value = "<tr>
