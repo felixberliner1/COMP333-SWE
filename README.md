@@ -69,4 +69,5 @@ The following branches address various issues throughout the project:
 
 ## XAMPP Environment Screenshots
 
-<img width="1341" alt="Screenshot 2025-02-25 at 9 20 21 AM" src="https://github.com/user-attachments/assets/e529d91e-052d-4793-9406-adfa7a6f013a" />
+Will:
+<img width="1237" alt="PNG image" src="https://github.com/user-attachments/assets/3d31875d-06a7-4d18-a5d6-a60299d0e35f" />
