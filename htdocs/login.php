@@ -5,7 +5,7 @@
         $username = $_POST['user'];
         $_SESSION['username'] = $username;
         $password = $_POST['pass'];
-
+        //Gets password from the associated username (parameterized)
         $sql = "SELECT password FROM login WHERE username = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $username); 
@@ -15,7 +15,8 @@
         
         if(mysqli_stmt_num_rows($stmt) == 1) {
             mysqli_stmt_fetch($stmt);
-    
+            //If password and username don't match, sends you back to index w/ loginsuccessful set to false
+            //Otherwise, sends you to the welcome page
             if(password_verify($password, $hashed_password)) {
                 $_SESSION['loggedin'] = true;
                 header("Location: welcome.php");
