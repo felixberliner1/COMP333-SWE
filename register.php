@@ -2,18 +2,17 @@
 session_start();
 include("connection.php");
 
-if(isset($_SESSION['loggedin'])) {
-    if($_SESSION['loggedin'] == true) {
-        header("Location: welcome.php");
-        exit();
-    }
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    header("Location: welcome.php");
+    exit();
 }
 
 if(isset($_POST['register'])) {
-    $username = $_POST['user'];
-    $password = $_POST['pass'];
-    $confirm_password = $_POST['confirm_pass'];
+    $username = trim($_POST['user']);
+    $password = trim($_POST['pass']);
+    $confirm_password = trim($_POST['confirm_pass']);
 
+    // Check if password is at least 10 characters long
     if(strlen($password) < 10) { 
         echo '<script>
             alert("Password must be at least 10 characters long."); 
@@ -22,18 +21,22 @@ if(isset($_POST['register'])) {
         exit();
     }
 
+    // Check if passwords match
     if($password !== $confirm_password) {
         header("Location: register.php?error=password_mismatch");
         exit();
     }
 
-    $sql_check = "SELECT * FROM login WHERE username = ?";
+    //Check if username already exists
+    $sql_check = "SELECT COUNT(*) FROM login WHERE username = ?";
     $stmt_check = mysqli_prepare($conn, $sql_check);
     mysqli_stmt_bind_param($stmt_check, "s", $username);
     mysqli_stmt_execute($stmt_check);
-    $result_check = mysqli_stmt_get_result($stmt_check);
+    mysqli_stmt_bind_result($stmt_check, $user_count);
+    mysqli_stmt_fetch($stmt_check);
+    mysqli_stmt_close($stmt_check);
 
-    if(mysqli_num_rows($result_check) > 0) {
+    if($user_count > 0) {
         echo '<script>
             alert("Username already taken. Please choose another.");
             window.location.href = "register.php";
@@ -41,16 +44,17 @@ if(isset($_POST['register'])) {
         exit();
     }
 
-    $salt = bin2hex(random_bytes(16));
-    #$hashed_password = password_hash($salt . $password, PASSWORD_BCRYPT);
+    //Hash password securely
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    //Insert new user into the database
     $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
-    
     mysqli_stmt_bind_param($stmt, "ss", $username, $hashed_password);
-    
+
     if(mysqli_stmt_execute($stmt)) {
         $_SESSION['username'] = $username;
+        $_SESSION['loggedin'] = true;
         echo '<script>
             alert("Registration successful! Redirecting to welcome page.");
             window.location.href = "welcome.php";
@@ -59,8 +63,8 @@ if(isset($_POST['register'])) {
         echo '<script>alert("Error: Unable to register. Please try again later.");</script>';
     }
 
+    //Close resources
     mysqli_stmt_close($stmt);
-    mysqli_stmt_close($stmt_check);
     mysqli_close($conn);
 }
 ?>
