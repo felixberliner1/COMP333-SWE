@@ -1,57 +1,43 @@
 <?php
-    session_start();
-    include("connection.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Login</title>
-    </head>
-<body>
-    <?php 
-        if (isset($_SESSION['loginsuccessful'])) {
-            if ($_SESSION['loginsuccessful'] == false) {
-                echo "Username or Password Incorrect. Please Try Again.";
-                $_SESSION['loginsuccessful'] = true;
-            }
-        }
-    ?>
-    <div id="form">
-        <h1>Login Form</h1>
-        <form name="form" action="login.php" Onsubmit="return isvalid()" method="POST">
-            
-            <label>Username: </label>
-            <input type="text" id="user" name="user">
-        </br></br>
-            <label>Password: </label>
-            <input type="password" id="pass" name="pass">
-        </br></br>
-            <input type="submit" id="btn" value="Login" name="btn">
-        <p>New? <a href="register.php">Register Here</a></p>
+header("Content-Type: application/json"); 
 
-    </div>
-    <script>
-        function isvalid(){
-            var user = document.form.user.value;
-            var pass = document.form.pass.value;
-            if(user.length=="" && pass.length=="") {
-                alert("Username and password field is empty.");
-                return false
+session_start();
+include("connection.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($data['user']) && isset($data['pass'])) {
+        $user = $data['user'];
+        $pass = $data['pass'];
+
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows > 0) {
+            $user_data = $result->fetch_assoc();
+            
+            if (password_verify($pass, $user_data['password'])) {
+                $_SESSION['username'] = $user_data['username'];
+                echo json_encode(["message" => "Login successful."]);
+                http_response_code(200); 
+            } else {
+                echo json_encode(["message" => "Username or Password Incorrect."]);
+                http_response_code(401);
             }
-            else {
-                if(user.length=="") {
-                    alert("Username is empty.")
-                    return false
-                }
-                if(pass.length=="") {
-                    alert("Password is empty")
-                    return false
-                }
-            }
+        } else {
+            echo json_encode(["message" => "Username or Password Incorrect."]);
+            http_response_code(401);
         }
-    </script>
-</body>
-</html>
+    } else {
+        echo json_encode(["message" => "Username and Password are required."]);
+        http_response_code(400);
+    }
+} else {
+    echo json_encode(["message" => "Invalid request method. Use POST."]);
+    http_response_code(405);
+}
+?>
