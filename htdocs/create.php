@@ -1,73 +1,42 @@
-
-<!DOCTYPE html>
 <?php
-    session_start();
-    include("connection.php");
-    if(isset($_POST['btn'])){
-        $song = $_POST['song'];
-        $artist = $_POST['artist'];
-        $rating = $_POST['rating'];
+session_start();
+include("connection.php");
+
+$database = new Database();
+$conn = $database->getConnection();
+
+header("Content-Type: application/json");
+
+if (!isset($_SESSION['username'])) {
+    echo json_encode(["message" => "User not logged in."]);
+    http_response_code(403);
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($data['song'], $data['artist'], $data['rating'])) {
+        $song = $data['song'];
+        $artist = $data['artist'];
+        $rating = $data['rating'];
         $user = $_SESSION['username'];
+
         $stmt = $conn->prepare("INSERT INTO ratings(username, song, artist, rating) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sssi", $user, $song, $artist, $rating);
         $stmt->execute();
         $stmt->close();
-        header("location:welcome.php");
+
+        echo json_encode(["message" => "Rating submitted successfully."]);
+        http_response_code(201);
+    } else {
+        echo json_encode(["message" => "Missing required fields."]);
+        http_response_code(400);
     }
+} else {
+    echo json_encode(["message" => "Invalid request method. Use POST."]);
+    http_response_code(405);
+}
+
+mysqli_close($conn);
 ?>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Create New Entry</title>
-    </head>
-<body>
-    <?php
-    
-    if(isset($_POST['logout'])) {
-        $_SESSION = array();
-        session_destroy();
-        header("location:index.php");
-    }
-    ?>
-    You are currently logged in as: <?php echo $_SESSION['username']?>
-    <form method="post">
-        <input type="submit" name="logout"
-            value="log out?"/>
-    </form>
-
-    <div id="form">
-        <h1>Enter data here:</h1>
-        <form name="form" Onsubmit="return isvalid()" method="POST">
-            
-            <label>Song: </label>
-            <input type="text" id="song" name="song">
-        </br></br>
-            <label>Artist: </label>
-            <input type="text" id="artist" name="artist">
-        </br></br>
-            <label>Rating: </label>
-            <input type="number" step="1" onchange="this.value = Math.max(0, Math.min(9, parseInt(this.value)));" name ="rating">
-        </br></br>
-            <input type="submit" id="btn" value="submit" name="btn">
-
-    </div>
-    <a href="welcome.php">Go Back</a>
-    <script>
-        function isvalid(){
-            var song = document.form.song.value;
-            var artist = document.form.artist.value;
-            var rating = document.form.rating.value;
-            if(song.length=="") {
-                alert("Song name is empty.");
-                return false
-            }
-            if(artist.length=="") {
-                alert("Artist name is empty.")
-                return false
-            }
-        }
-    </script>
-</body>
-</html>

@@ -1,43 +1,50 @@
-<!DOCTYPE html>
 <?php
-    session_start();
-    include "connection.php";
-    if(isset($_GET['id']) && isset($_POST['btn'])){
-        $id = $_GET['id'];
+session_start();
+include("connection.php");
+
+$database = new Database();
+$conn = $database->getConnection();
+
+header("Content-Type: application/json");
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!isset($data['id'])) {
+            http_response_code(400);
+            echo json_encode(["message" => "ID not provided."]);
+            exit;
+        }
+
+        if (!isset($_SESSION['username'])) {
+            http_response_code(403);
+            echo json_encode(["message" => "User not logged in."]);
+            exit;
+        }
+
+        $id = $data['id'];
         $stmt = $conn->prepare("DELETE FROM ratings WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $stmt->close();
-        header("location:welcome.php");
-    }
-?>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Delete Entry?</title>
-    </head>
-    <body>
-    <?php
-    
-    if(isset($_POST['logout'])) {
-        $_SESSION = array();
-        session_destroy();
-        header("location:index.php");
-    }
-    ?>
-    You are currently logged in as: <?php echo $_SESSION['username']?>
-    <form method="post">
-        <input type="submit" name="logout"
-            value="log out?"/>
-    </form>
 
-        Please confirm if you really want to delete this entry.
-        <div id="form">
-        <form name="form" method="POST">
-            <input type="submit" id="btn" value="yes" name="btn">
-        </div>
-        <a href="welcome.php">No</a>
-    </body>
-</html>
+        if ($stmt->affected_rows > 0) {
+            http_response_code(200);
+            echo json_encode(["message" => "Entry deleted successfully."]);
+        } else {
+            http_response_code(404);
+            echo json_encode(["message" => "Entry not found or already deleted."]);
+        }
+
+        $stmt->close();
+    } else {
+        http_response_code(405);
+        echo json_encode(["message" => "Invalid request method. Use DELETE."]);
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(["message" => "Server error.", "error" => $e->getMessage()]);
+}
+?>
