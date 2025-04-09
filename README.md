@@ -188,3 +188,13 @@ Felix:
 
 ### **Final Submission**
 - **Deployed URL:** [https://swe333.great-site.net/](https://swe333.great-site.net/)
+
+
+### GET and POST Screenshots
+
+Will:
+
+GET:
+<img width="1267" alt="Screenshot 2025-04-07 at 10 16 26 PM" src="https://github.com/user-attachments/assets/43f4dc9a-7013-4e5e-b57d-4314417c534a" />
+POST:
+<img width="1274" alt="Screenshot 2025-04-07 at 10 15 45 PM" src="https://github.com/user-attachments/assets/323fb8d6-e7c9-4162-ba4a-ed9606a7bbc8" />
