@@ -6,7 +6,7 @@
 - Marouan El-Asery
 
 ## Project Overview
-This project started as a landing page for **Homework 1 in COMP 333**. For **Homework 2**, it has been expanded into a full-stack **CRUD web application** with user authentication and a **MySQL database**.
+This project started as a landing page for **Homework 1 in COMP 333**. For **Homework 2**, it has been expanded into a full-stack **CRUD web application** with user authentication and a **MySQL database**. For **Homework 3**, the backend has been modified to work with a mobile frontend.
 
 ### Features
 - **User Authentication**: Register, log in, and log out securely
@@ -198,3 +198,9 @@ GET:
 <img width="1267" alt="Screenshot 2025-04-07 at 10 16 26 PM" src="https://github.com/user-attachments/assets/43f4dc9a-7013-4e5e-b57d-4314417c534a" />
 POST:
 <img width="1274" alt="Screenshot 2025-04-07 at 10 15 45 PM" src="https://github.com/user-attachments/assets/323fb8d6-e7c9-4162-ba4a-ed9606a7bbc8" />
+
+Marouan:
+
+Felix:
+
+
