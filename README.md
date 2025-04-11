@@ -47,7 +47,7 @@ Each team member contributed **equally (33.33%)** to the project.
 
 ## Installation Guide
 
-### **1. Setup XAMPP (Local Development)**
+### Setup XAMPP (Local Development)**
 1. Download and install **XAMPP** from [Apache Friends](https://www.apachefriends.org/)
 2. Start **Apache** and **MySQL** from the XAMPP Control Panel
 3. Place all project files inside the `htdocs/` folder
@@ -76,7 +76,7 @@ CREATE TABLE ratings (
 );
 ```
 
-### **3. Configure Database Connection**
+### Configure Database Connection**
 Modify `connection.php` to match local database credentials:
 
 ```php
@@ -92,30 +92,123 @@ if ($conn->connect_error) {
 }
 ?>
 ```
+# Backend REST API & XAMPP Setup (Local Access + Remote Testing)
 
-### **4. Run the Web App**
-1. Start **Apache** and **MySQL** in XAMPP
-2. Open `http://localhost/index.php` in a web browser
-3. Register an account and test the CRUD functionality
+## Apache Configuration (Remote Access Enabled)
 
----
+To allow external devices (React Native or Postman) to connect to your local Apache server, follow these steps:
 
-## Deployment to InfinityFree
+### 1. Edit Apache Config File (httpd.conf)
+Located at:
+```
+/Applications/XAMPP/xamppfiles/etc/httpd.conf
+```
 
-### **1. Set Up Hosting**
-1. Sign up on [InfinityFree](https://www.infinityfree.net/)
-2. Create a new hosting account
-3. Click **"Control Panel"** and open **"MySQL Databases"**
-4. Take note of:
-   - **Database name**: `if0_38465106_app_db`
-   - **MySQL username**: `if0_38465106`
-   - **Host**: `sql209.infinityfree.com`
-   - **Password**: (Your InfinityFree vPanel password)
+Make the following changes:
 
-### **2. Create the Remote Database**
-Run this SQL in **InfinityFree's phpMyAdmin**:
+```apacheconf
+<Directory />
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<Directory "/Applications/XAMPP/xamppfiles/htdocs">
+    Options Indexes FollowSymLinks ExecCGI Includes
+    AllowOverride All
+    Require all granted
+</Directory>
+```
+
+This allows public access to your API endpoints (safe for development use only).
+
+### 2. Expose Port 80 on macOS
+- Go to **System Settings > Network > Firewall > Options**
+- Ensure that **XAMPP** or **Apache HTTP Server** is set to **"Allow incoming connections"**
+
+![macOS Firewall Settings for XAMPP](assets/images/xampp-firewall-settings.png)
+## Enable CORS for Cross-Origin Requests
+
+Update `BaseController.php` to include the following in `sendOutput()`:
+
+```php
+protected function sendOutput($data, $httpHeaders = [])
+{
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+    header_remove('Set-Cookie');
+    if (is_array($httpHeaders)) {
+        foreach ($httpHeaders as $httpHeader) {
+            header($httpHeader);
+        }
+    }
+
+    echo $data;
+    exit;
+}
+```
+
+## Handle Preflight Requests (OPTIONS)
+
+In `index.php`, add this **before routing logic**:
+
+```php
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    exit(0);
+}
+```
+
+## API Testing via Postman (Live Backend)
+
+Once the server is configured and running at your machine's IP (e.g. `129.133.73.252`):
+
+### Test User Registration:
+- **POST** `http://129.133.73.252/index.php/user/register`
+```json
+{
+  "username": "testuser",
+  "password": "strongpassword123",
+  "confirm_password": "strongpassword123"
+}
+```
+
+### Test User Login:
+- **POST** `http://129.133.73.252/index.php/user/login`
+```json
+{
+  "username": "testuser",
+  "password": "strongpassword123"
+}
+```
+
+### Add Song Rating:
+- **POST** `http://129.133.73.252/index.php/rating/create`
+```json
+{
+  "username": "testuser",
+  "song": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "rating": 9
+}
+```
+
+### View All Ratings:
+- **GET** `http://129.133.73.252/index.php/rating/list`
+
+These all return valid JSON responses if configured correctly.
+
+## Local Database (`app_db`)
+Use this SQL in phpMyAdmin:
 
 ```sql
+CREATE DATABASE app_db;
+
+USE app_db;
+
 CREATE TABLE login (
     username VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL
@@ -131,70 +224,4 @@ CREATE TABLE ratings (
 );
 ```
 
-### **3. Update `connection.php` for Deployment**
-Modify `connection.php` with InfinityFree credentials:
 
-```php
-$servername = "sql209.infinityfree.com"; 
-$username = "if0_38465106"; 
-$password = "your-password-here";  
-$db_name = "if0_38465106_app_db";  
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-```
-
-### **4. Upload Files**
-1. Use **InfinityFree's File Manager**
-2. Navigate to `htdocs/`
-3. Upload all project files
-
-### **5. Test Deployed Version**
-- Visit: [https://swe333.great-site.net/](https://swe333.great-site.net/)
-- Ensure database connection and CRUD features are working
-
-### **6. Enable SSL**
-1. Go to **Control Panel → SSL/TLS**
-2. Request a **free SSL certificate**
-3. Deploy the certificate (may take **1 to 48 hours**)
-4. Ensure HTTPS is working
-
----
-
-
-
-## Screenshots
-
-### Local Development (XAMPP)
-
-Marouan:
-![XAMPP Screenshot](assets/images/XAMPP_Marouan.png)
-
-Will:
-![XAMPP Screenshot](assets/images/XAMPP_Will.png)
-
-Felix:
-![XAMPP Screenshot](assets/images/XAMPP_Felix.png)
-
-### InfinityFree Deployment
-![InfinityFree Screenshot](assets/images/Infinityfree_Dashboard.png)
-
----
-
-
-### **Final Submission**
-- **Deployed URL:** [https://swe333.great-site.net/](https://swe333.great-site.net/)
-
-
-### GET and POST Screenshots
-
-Will:
-
-GET:
-<img width="1267" alt="Screenshot 2025-04-07 at 10 16 26 PM" src="https://github.com/user-attachments/assets/43f4dc9a-7013-4e5e-b57d-4314417c534a" />
-POST:
-<img width="1274" alt="Screenshot 2025-04-07 at 10 15 45 PM" src="https://github.com/user-attachments/assets/323fb8d6-e7c9-4162-ba4a-ed9606a7bbc8" />
