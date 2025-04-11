@@ -1,43 +1,23 @@
 <?php
-header("Content-Type: application/json"); 
+require __DIR__ . "/inc/bootstrap.php";
 
-session_start();
-include("connection.php");
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = explode('/', $uri);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (isset($data['user']) && isset($data['pass'])) {
-        $user = $data['user'];
-        $pass = $data['pass'];
-
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $user);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-        if ($result->num_rows > 0) {
-            $user_data = $result->fetch_assoc();
-            
-            if (password_verify($pass, $user_data['password'])) {
-                $_SESSION['username'] = $user_data['username'];
-                echo json_encode(["message" => "Login successful."]);
-                http_response_code(200); 
-            } else {
-                echo json_encode(["message" => "Username or Password Incorrect."]);
-                http_response_code(401);
-            }
-        } else {
-            echo json_encode(["message" => "Username or Password Incorrect."]);
-            http_response_code(401);
-        }
-    } else {
-        echo json_encode(["message" => "Username and Password are required."]);
-        http_response_code(400);
-    }
-} else {
-    echo json_encode(["message" => "Invalid request method. Use POST."]);
-    http_response_code(405);
+if (!isset($uri[2]) || !isset($uri[3])) {
+    header("HTTP/1.1 404 Not Found");
+    exit();
 }
-?>
+
+$controllerName = ucfirst($uri[2]) . 'Controller';
+$controllerFile = PROJECT_ROOT_PATH . "/Controller/Api/" . $controllerName . ".php";
+
+if (!file_exists($controllerFile)) {
+    header("HTTP/1.1 404 Not Found");
+    exit();
+}
+
+require $controllerFile;
+$controller = new $controllerName();
+$strMethodName = $uri[3] . 'Action';
+$controller->{$strMethodName}();
