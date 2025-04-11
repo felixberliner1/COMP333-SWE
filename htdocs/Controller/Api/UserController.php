@@ -15,10 +15,10 @@ class UserController extends BaseController
                 $userModel = new UserModel();
                 
                 // Validate input
-                if (empty($requestData['username']) {
+                if (empty($requestData['username'])) {
                     throw new Exception("Username is required");
                 }
-                if (empty($requestData['password']) {
+                if (empty($requestData['password'])) {
                     throw new Exception("Password is required");
                 }
                 if ($requestData['password'] !== $requestData['confirm_password']) {
