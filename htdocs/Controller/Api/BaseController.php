@@ -26,15 +26,21 @@ class BaseController
 
     protected function sendOutput($data, $httpHeaders = [])
     {
+        // Allow requests from any frontend
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    
         header_remove('Set-Cookie');
-        
+    
         if (is_array($httpHeaders) && count($httpHeaders)) {
             foreach ($httpHeaders as $httpHeader) {
                 header($httpHeader);
             }
         }
-        
+    
         echo $data;
         exit;
     }
+    
 }
